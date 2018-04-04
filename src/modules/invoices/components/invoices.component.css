@@ -1,0 +1,81 @@
+.actions {
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.second-title {
+  color: #4D4E4D;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.table {
+  width: 100%;
+  padding: 25px;
+  background-color: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+.table-row {
+  height: 40px;
+}
+
+.table-row:first-child {
+  background-color: #F1F3F6;
+}
+
+.table-title {
+  font-weight: bold;
+  color: #9EA4B4;
+  text-align: left;
+}
+
+.table-title:first-child {
+  padding-left: 20px;
+}
+
+.table-text {
+  color: #9EA4B4;
+}
+
+.table-text:first-child {
+  padding-left: 20px;
+}
+
+.table-number {
+  color: #A2B8FD;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.icon-delete {
+  display: flex;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.icon-edit {
+  display: flex;
+  cursor: pointer;
+}
+
+.icon-delete svg, .icon-edit svg {
+  fill: #9EA4B4;
+  transition: all .3s ease;
+}
+
+.icon-delete:hover svg {
+  fill: red;
+}
+
+.icon-edit:hover svg {
+  fill: orange;
+}

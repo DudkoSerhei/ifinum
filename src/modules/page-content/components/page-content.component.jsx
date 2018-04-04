@@ -5,7 +5,7 @@ import { CreateInvoiceContainer as CreateInvoice } from '../../create-invoice/co
 import './page-content.component.css';
 
 const PageContent = () => (
-  <div className="content">
+  <div className="page">
     <Switch>
       <Route exact path="/" component={Invoices} />
       <Route path="/create" component={CreateInvoice} />

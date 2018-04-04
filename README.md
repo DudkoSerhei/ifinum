@@ -1,4 +1,4 @@
-# Ifinum test projects
+# Ifinum test project
 
 
 #### Start development
