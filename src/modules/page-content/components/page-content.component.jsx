@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import Invoices from '../../invoices/components/invoices.component';
-import CreateInvoice from '../../create-invoice/components/create-invoice.component';
+import { InvoicesContainer as Invoices } from '../../invoices/containers/invoices.container';
+import { CreateInvoiceContainer as CreateInvoice } from '../../create-invoice/containers/create-invoice.container';
 import './page-content.component.css';
 
 const PageContent = () => (
