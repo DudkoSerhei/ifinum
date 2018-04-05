@@ -10,13 +10,13 @@ import './create-invoice.component.css';
 class CreateInvoice extends Component {
   state = {
     number: this.props.number || '',
-    invoiceDate: this.props.invoiceDate || '',
+    createdDate: this.props.createdDate || '',
     supplyDate: this.props.supplyDate || '',
     comment: this.props.comment || '',
   };
 
   render () {
-    const { number, invoiceDate, supplyDate, comment } = this.state;
+    const { number, createdDate, supplyDate, comment } = this.state;
 
     return (
       <div className="main">
@@ -37,8 +37,8 @@ class CreateInvoice extends Component {
                 <InputCalendar
                   placeholder="Select date"
                   disableDateBefore={new Date()}
-                  value={invoiceDate}
-                  onChange={value => this.onFormItemChange('invoiceDate', value, 'invoice')}
+                  value={createdDate}
+                  onChange={value => this.onFormItemChange('createdDate', value, 'invoice')}
                 />
               </div>
               <div className="form-column" id="supply">
@@ -68,7 +68,7 @@ class CreateInvoice extends Component {
 
   validateForm = () => {
     const {
-      number, invoiceDate, supplyDate, comment,
+      number, createdDate, supplyDate, comment,
     } = this.state;
 
     let isValid = true;
@@ -77,7 +77,7 @@ class CreateInvoice extends Component {
       document.getElementById('number').classList.add('field_hasError');
       isValid = false;
     }
-    if (!invoiceDate) {
+    if (!createdDate) {
       document.getElementById('invoice').classList.add('field_hasError');
       isValid = false;
     }
@@ -95,20 +95,20 @@ class CreateInvoice extends Component {
 
   onSubmit = (e) => {
     const {
-      number, invoiceDate, supplyDate, comment,
+      number, createdDate, supplyDate, comment,
     } = this.state;
 
     e.preventDefault();
 
     const data = {
-      number,
-      invoiceDate,
-      supplyDate,
+      number: parseInt(number, 10),
+      date_created: createdDate,
+      date_supply: supplyDate,
       comment,
     };
 
     if (this.validateForm()) {
-      console.log(data);
+      this.props.actions.invoiceCreateFetch(data);
       setTimeout(() => {
         window.location.href = "http://localhost:3000";
       }, 1000);

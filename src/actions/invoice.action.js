@@ -40,11 +40,8 @@ export const invoiceCreateRequest = () => ({
   type: INVOICE_CREATE_REQUEST,
 });
 
-export const invoiceCreateReceive = invoice => ({
+export const invoiceCreateReceive = () => ({
   type: INVOICE_CREATE_SUCCESS,
-  payload: {
-    invoice,
-  },
 });
 
 export const invoiceCreateFailed = error => ({
@@ -54,14 +51,14 @@ export const invoiceCreateFailed = error => ({
   },
 });
 
-// export const invoiceCreateFetch = () => (dispatch) => {
-//   dispatch(invoiceCreateRequest());
-//   return fetch('http://localhost:9000/invoices')
-//     .then((response) => {
-//       dispatch(invoicesReceive(response.data));
-//     })
-//     .catch(error => dispatch(invoicesFailed(error)));
-// };
+export const invoiceCreateFetch = (invoice) => (dispatch) => {
+  dispatch(invoiceCreateRequest());
+  axios.post('http://localhost:9000/invoices', invoice)
+    .then((response) => {
+      dispatch(invoiceCreateReceive(response.data));
+    })
+    .catch(error => dispatch(invoiceCreateFailed(error)));
+};
 
 export const INVOICE_REMOVE_REQUEST = 'INVOICE_REMOVE_REQUEST';
 export const INVOICE_REMOVE_SUCCESS = 'INVOICE_REMOVE_SUCCESS';
