@@ -1,0 +1,24 @@
+.input-calendar {
+  position: relative;
+}
+
+.input-calendar input {
+  width: 560px;
+  height: 40px;
+  border: 1px solid #DFDFDF;
+  border-radius: 6px;
+  outline: 0;
+  font-size: 14px;
+  padding-left: 15px;
+}
+
+.icon-calendar {
+  position: absolute;
+  top: -4px;
+  left: 520px;
+  cursor: pointer;
+}
+
+.icon-calendar svg {
+  fill: #DFDFDF;
+}

@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  height: 540px;
+  background-color: #fff;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-column {
+  margin-bottom: 40px;
+}
+
+.fields {
+  padding: 25px;
+  border: 1px solid #dfdfdf;
+  margin-bottom: 30px;
+}
+
+.form-title {
+  font-size: 16px;
+  color: #676767;
+  margin-bottom: 15px;
+}
+
+.form-button {
+  margin-left: auto;
+}
