@@ -40,7 +40,7 @@ class Invoices extends Component {
                   <td className="table-text">{invoice.supplyDate}</td>
                   <td className="table-text">{this.onCutText(invoice.comment, 200)}</td>
                   <td className="table-icons">
-                    <div className="icon-delete">
+                    <div className="icon-delete" onClick={() => this.onRemoveInvoice(invoice.id)}>
                       <svg height="23.333" width="23.332" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.043 11.667L22.609 5.1a2.484 2.484 0 0 0 0-3.502l-.875-.875a2.482 2.482 0 0 0-3.502 0L11.666 7.29 5.099.723a2.482 2.482 0 0 0-3.501 0l-.876.875a2.485 2.485 0 0 0 0 3.502l6.566 6.566-6.566 6.567a2.484 2.484 0 0 0 0 3.501l.876.875a2.482 2.482 0 0 0 3.501 0l6.567-6.565 6.566 6.565a2.484 2.484 0 0 0 3.502 0l.875-.875a2.482 2.482 0 0 0 0-3.501l-6.566-6.566z"/>
                       </svg>
@@ -66,6 +66,13 @@ class Invoices extends Component {
     }
   
     return text;
+  };
+
+  onRemoveInvoice = (id) => {
+    if (this.props.actions.invoiceRemoveFetch) {
+      this.props.actions.invoiceRemoveFetch(id);
+    }
+    window.location.reload();
   };
 }
 

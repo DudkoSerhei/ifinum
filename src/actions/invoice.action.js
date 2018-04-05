@@ -76,14 +76,14 @@ export const invoiceRemoveFailed = () => ({
   type: INVOICE_REMOVE_FAILURE,
 });
 
-// export const invoiceRemoveFetch = () => (dispatch) => {
-//   dispatch(invoicesRequest());
-//   return fetch('http://localhost:9000/invoices')
-//     .then((response) => {
-//       dispatch(invoicesReceive(response.data));
-//     })
-//     .catch(error => dispatch(invoicesFailed(error)));
-// };
+export const invoiceRemoveFetch = (id) => (dispatch) => {
+  dispatch(invoiceRemoveRequest());
+  axios.delete(`http://localhost:9000/invoices/${id}`)
+    .then((response) => {
+      dispatch(invoiceRemoveReceive(response.data));
+    })
+    .catch(error => dispatch(invoiceRemoveFailed(error)));
+};
 
 export const INVOICE_EDIT_REQUEST = 'INVOICE_EDIT_REQUEST';
 export const INVOICE_EDIT_SUCCESS = 'INVOICE_EDIT_SUCCESS';
