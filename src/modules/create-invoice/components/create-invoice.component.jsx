@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import Header from '../../ui-kit/header/components/header.component';
 import Button from '../../ui-kit/button/button.component';
 import InputCalendar from '../../ui-kit/input-calendar/input-calendar.component';
@@ -119,7 +120,7 @@ class CreateInvoice extends Component {
     if (this.validateForm()) {
       this.props.actions.invoiceCreateFetch(data);
       setTimeout(() => {
-        window.location.href = "http://localhost:3000";
+        this.props.history.push('/');
       }, 1000);
     }
   };
@@ -134,6 +135,7 @@ class CreateInvoice extends Component {
 
 CreateInvoice.propTypes = {
   numbers: PropTypes.arrayOf(PropTypes.number),
+  history: PropTypes.object,
 };
 
-export default CreateInvoice;
+export default withRouter(CreateInvoice);

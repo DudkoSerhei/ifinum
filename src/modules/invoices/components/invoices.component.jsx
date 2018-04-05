@@ -82,7 +82,9 @@ class Invoices extends Component {
     if (this.props.actions.invoiceRemoveFetch) {
       this.props.actions.invoiceRemoveFetch(id);
     }
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 250);
   };
 
   onEditInvoice = (id) => {
@@ -100,6 +102,7 @@ Invoices.propTypes = {
   actions: PropTypes.shape({
     invoicesFetch: PropTypes.func,
   }),
+  history: PropTypes.object,
 };
 
 export default withRouter(Invoices);
