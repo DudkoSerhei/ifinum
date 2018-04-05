@@ -1,0 +1,38 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+      }
+    },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "import/prefer-default-export": 0,
+    "react/require-default-props": 0,
+    "react/sort-comp": 0,
+    "react/no-did-mount-set-state": 0,
+    "no-case-declarations": 0,
+    "react/no-will-update-set-state": 0,
+    "react/jsx-boolean-value": 0,
+    "import/first": 0,
+    "eol-last": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/media-has-caption": 0,
+    "object-curly-spacing": [2, "always"],
+    "object-curly-newline": 0,
+    "react/no-array-index-key": 0,
+    "react/no-did-update-set-state": 0
+  }
+}
