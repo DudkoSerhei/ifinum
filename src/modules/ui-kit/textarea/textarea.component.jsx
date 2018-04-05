@@ -4,12 +4,13 @@ import './textarea.component.css';
 
 class Textarea extends Component {
   render() {
-    const { placeholder, value } = this.props;
+    const { placeholder, value, maxLength } = this.props;
 
     return (
       <div className="textarea-container">
         <textarea
           className="textarea"
+          maxLength={maxLength}
           placeholder={placeholder}
           onChange={this.onTextareaChange}
           defaultValue={value}
@@ -29,6 +30,7 @@ Textarea.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
+  maxLength: PropTypes.number,
 };
 
 export default Textarea;

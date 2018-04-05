@@ -30,14 +30,14 @@ class EditInvoice extends Component {
                   placeholder="Input number"
                   value={number}
                   onChange={value => this.onFormItemChange('number', value, 'number')}
+                  type="number"
                 />
               </div>
               <div className="form-column" id="invoice">
                 <h3 className="form-title">Invoice Date:</h3>
                 <InputCalendar
                   placeholder="Select date"
-                  disableDateBefore={new Date()}
-                  value={createdDate}
+                  value={new Date(createdDate)}
                   onChange={value => this.onFormItemChange('createdDate', value, 'invoice')}
                 />
               </div>
@@ -45,8 +45,7 @@ class EditInvoice extends Component {
                 <h3 className="form-title">Supply Date:</h3>
                 <InputCalendar
                   placeholder="Select date"
-                  disableDateBefore={new Date()}
-                  value={supplyDate}
+                  value={new Date(supplyDate)}
                   onChange={value => this.onFormItemChange('supplyDate', value, 'supply')}
                 />
               </div>
@@ -57,6 +56,7 @@ class EditInvoice extends Component {
                 placeholder="Enter comment"
                 value={comment}
                 onChange={value => this.onFormItemChange('comment', value, 'textarea')}
+                maxLength={500}
               />
             </div>
           </div>
@@ -73,6 +73,10 @@ class EditInvoice extends Component {
     let isValid = true;
 
     if (!number) {
+      document.getElementById('number').classList.add('field_hasError');
+      isValid = false;
+    }
+    if (number.length > 6) {
       document.getElementById('number').classList.add('field_hasError');
       isValid = false;
     }

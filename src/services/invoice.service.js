@@ -1,9 +1,9 @@
 export const parseRawInvoice = invoice => ({
   id: invoice.id,
   comment: invoice.comment,
-  createdDate: new Date(invoice.date_created).toLocaleDateString(),
-  dueDate: new Date(invoice.date_due).toLocaleDateString(),
-  supplyDate: new Date(invoice.date_supply).toLocaleDateString(),
+  createdDate: invoice.date_created,
+  dueDate: invoice.date_due,
+  supplyDate: invoice.date_supply,
   number: invoice.number,
   direction: invoice.direction,
 });

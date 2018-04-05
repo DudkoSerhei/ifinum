@@ -30,6 +30,7 @@ class CreateInvoice extends Component {
                   placeholder="Input number"
                   value={number}
                   onChange={value => this.onFormItemChange('number', value, 'number')}
+                  type="number"
                 />
               </div>
               <div className="form-column" id="invoice">
@@ -57,6 +58,7 @@ class CreateInvoice extends Component {
                 placeholder="Enter comment"
                 value={comment}
                 onChange={value => this.onFormItemChange('comment', value, 'textarea')}
+                maxLength={500}
               />
             </div>
           </div>
@@ -73,6 +75,10 @@ class CreateInvoice extends Component {
     let isValid = true;
 
     if (!number) {
+      document.getElementById('number').classList.add('field_hasError');
+      isValid = false;
+    }
+    if (number.length > 6) {
       document.getElementById('number').classList.add('field_hasError');
       isValid = false;
     }

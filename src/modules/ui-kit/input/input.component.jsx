@@ -4,7 +4,7 @@ import './input.component.css';
 
 class Input extends Component {
   render() {
-    const { placeholder } = this.props;
+    const { placeholder, type } = this.props;
     const value = this.props.value || '';
 
     return (
@@ -13,7 +13,7 @@ class Input extends Component {
           <input
             className="input"
             placeholder={placeholder}
-            type="text"
+            type={type}
             onChange={this.onInputChange}
             value={value}
           />
@@ -38,6 +38,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  type: PropTypes.string,
 };
 
 export default Input;
