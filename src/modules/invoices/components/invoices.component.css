@@ -25,6 +25,7 @@
 
 .table {
   width: 100%;
+  height: 100%;
   padding: 25px;
   background-color: #fff;
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
@@ -32,39 +33,66 @@
 }
 
 .table-row {
-  height: 40px;
+  height: 50px;
 }
 
 .table-row:first-child {
   background-color: #F1F3F6;
 }
 
-.table-title {
+.table-create {
   font-weight: bold;
   color: #9EA4B4;
   text-align: left;
+  padding-left: 20px;
+  width: 10%;
 }
 
-.table-title:first-child {
-  padding-left: 20px;
+.table-number {
+  font-weight: bold;
+  color: #9EA4B4;
+  text-align: left;
+  width: 7%;
+}
+
+.table-supply {
+  font-weight: bold;
+  color: #9EA4B4;
+  text-align: left;
+  width: 8%;
+}
+
+.table-comment {
+  font-weight: bold;
+  color: #9EA4B4;
+  text-align: left;
+  width: 50%;
+}
+
+.table-actions {
+  font-weight: bold;
+  color: #9EA4B4;
+  text-align: center;
+  width: 10%;
 }
 
 .table-text {
   color: #9EA4B4;
 }
 
+.table-num {
+  color: #A2B8FD;
+}
+
 .table-text:first-child {
   padding-left: 20px;
 }
 
-.table-number {
-  color: #A2B8FD;
-}
-
-.table-actions {
+.table-icons {
   display: flex;
   align-items: center;
-  height: 40px;
+  justify-content: center;
+  height: 50px;
 }
 
 .icon-delete {

@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { parseRawInvoices } from '../services/invoice.service';
+
 export const INVOICES_REQUEST = 'INVOICES_REQUEST';
 export const INVOICES_SUCCESS = 'INVOICES_SUCCESS';
 export const INVOICES_FAILURE = 'INVOICES_FAILURE';
@@ -22,9 +25,9 @@ export const invoicesFailed = error => ({
 
 export const invoicesFetch = () => (dispatch) => {
   dispatch(invoicesRequest());
-  return fetch('http://localhost:9000/invoices')
+  axios.get('http://localhost:9000/invoices')
     .then((response) => {
-      dispatch(invoicesReceive(response.data));
+      dispatch(invoicesReceive(parseRawInvoices(response.data)));
     })
     .catch(error => dispatch(invoicesFailed(error)));
 };
@@ -100,14 +103,14 @@ export const invoiceEditReceive = invoice => ({
   },
 });
 
-export const invoiceRemoveFailed = error => ({
+export const invoiceEditFailed = error => ({
   type: INVOICE_EDIT_FAILURE,
   payload: {
     error,
   },
 });
 
-export const invoiceRemoveFetch = () => (dispatch) => {
+export const invoiceEditFetch = () => (dispatch) => {
   dispatch(invoiceEditRequest());
   return fetch('http://localhost:9000/invoices', {
       method: 'PUT',

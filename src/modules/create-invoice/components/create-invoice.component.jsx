@@ -109,7 +109,9 @@ class CreateInvoice extends Component {
 
     if (this.validateForm()) {
       console.log(data);
-      window.location.href = "http://localhost:3000";
+      setTimeout(() => {
+        window.location.href = "http://localhost:3000";
+      }, 1000);
     }
   };
 
