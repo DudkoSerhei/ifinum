@@ -5,14 +5,14 @@ import Button from '../../ui-kit/button/button.component';
 import InputCalendar from '../../ui-kit/input-calendar/input-calendar.component';
 import Input from '../../ui-kit/input/input.component';
 import Textarea from '../../ui-kit/textarea/textarea.component';
-import './create-invoice.component.css';
+import './edit-invoice.component.css';
 
-class CreateInvoice extends Component {
+class EditInvoice extends Component {
   state = {
-    number: '',
-    createdDate: '',
-    supplyDate: '',
-    comment: '',
+    number: this.props.invoice.number,
+    createdDate: this.props.invoice.createdDate,
+    supplyDate: this.props.invoice.supplyDate,
+    comment: this.props.invoice.comment,
   };
 
   render () {
@@ -20,7 +20,7 @@ class CreateInvoice extends Component {
 
     return (
       <div className="main">
-        <Header title="Create Invoice" />
+        <Header title="Edit Invoice" />
         <form className="form" onSubmit={this.onSubmit}>
           <div className="fields">
             <div className="form-inputs">
@@ -67,7 +67,7 @@ class CreateInvoice extends Component {
   }
 
   validateForm = () => {
-    const { numbers } = this.props;
+    const { numbers, invoice } = this.props;
     const { number, createdDate, supplyDate, comment } = this.state;
 
     let isValid = true;
@@ -76,7 +76,7 @@ class CreateInvoice extends Component {
       document.getElementById('number').classList.add('field_hasError');
       isValid = false;
     }
-    if (numbers.includes(parseInt(number, 10))) {
+    if (numbers.includes(parseInt(number, 10)) && number !== invoice.number) {
       document.getElementById('number').classList.add('field_hasError');
       isValid = false;
     }
@@ -103,7 +103,7 @@ class CreateInvoice extends Component {
 
     e.preventDefault();
 
-    const data = {
+    const newData = {
       number: parseInt(number, 10),
       date_created: createdDate,
       date_supply: supplyDate,
@@ -111,7 +111,7 @@ class CreateInvoice extends Component {
     };
 
     if (this.validateForm()) {
-      this.props.actions.invoiceCreateFetch(data);
+      this.props.actions.invoiceEditFetch(this.props.invoice.id, newData);
       setTimeout(() => {
         window.location.href = "http://localhost:3000";
       }, 1000);
@@ -126,8 +126,14 @@ class CreateInvoice extends Component {
   }
 }
 
-CreateInvoice.propTypes = {
+EditInvoice.propTypes = {
   numbers: PropTypes.arrayOf(PropTypes.number),
+  invoice: PropTypes.shape({
+    number: PropTypes.number,
+    invoiceDate: PropTypes.instanceOf(Date),
+    supplyDate: PropTypes.string,
+    comment: PropTypes.string,
+  }),
 };
 
-export default CreateInvoice;
+export default EditInvoice;

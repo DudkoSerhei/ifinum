@@ -107,13 +107,11 @@ export const invoiceEditFailed = error => ({
   },
 });
 
-export const invoiceEditFetch = () => (dispatch) => {
+export const invoiceEditFetch = (id, data) => (dispatch) => {
   dispatch(invoiceEditRequest());
-  return fetch('http://localhost:9000/invoices', {
-      method: 'PUT',
-    })
+  axios.put(`http://localhost:9000/invoices/${id}`, data)
     .then((response) => {
       dispatch(invoiceEditReceive(response.data));
     })
-    .catch(error => dispatch(invoiceRemoveFailed(error)));
+    .catch(error => dispatch(invoiceEditFailed(error)));
 };
