@@ -29,6 +29,10 @@
   margin-bottom: 15px;
 }
 
+.field_hasError .form-title {
+  color: red;
+}
+
 .form-button {
   margin-left: auto;
 }

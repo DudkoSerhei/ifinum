@@ -4,15 +4,15 @@ import './textarea.component.css';
 
 class Textarea extends Component {
   render() {
-    const { placeholder } = this.props;
+    const { placeholder, value } = this.props;
 
     return (
       <div className="textarea-container">
         <textarea
           className="textarea"
           placeholder={placeholder}
-          name="text"
           onChange={this.onTextareaChange}
+          defaultValue={value}
         />
       </div>
     );
@@ -28,6 +28,7 @@ class Textarea extends Component {
 Textarea.propTypes = {
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default Textarea;

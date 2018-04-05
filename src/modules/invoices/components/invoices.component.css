@@ -5,6 +5,17 @@
   margin-bottom: 40px;
 }
 
+.actions-button {
+  padding: 0;
+  height: 37px;
+}
+
+.actions-link {
+  padding: 10px 30px;
+  text-decoration: none;
+  color: currentColor;
+}
+
 .second-title {
   color: #4D4E4D;
   font-size: 16px;

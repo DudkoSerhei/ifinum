@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../ui-kit/header/components/header.component';
 import Button from '../../ui-kit/button/button.component';
 import './invoices.component.css';
@@ -10,7 +11,9 @@ class Invoices extends Component {
         <Header title="Invoices" />
         <div className="actions">
           <h2 className="second-title">Actions</h2>
-          <Button>Add new</Button>
+          <Button className="actions-button">
+            <Link to="/create" className="actions-link">Add new</Link>
+          </Button>
         </div>
         <table className="table">
           <tbody className="table-body">
