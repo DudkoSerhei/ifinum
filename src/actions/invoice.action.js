@@ -28,3 +28,92 @@ export const invoicesFetch = () => (dispatch) => {
     })
     .catch(error => dispatch(invoicesFailed(error)));
 };
+
+export const INVOICE_CREATE_REQUEST = 'INVOICE_CREATE_REQUEST';
+export const INVOICE_CREATE_SUCCESS = 'INVOICE_CREATE_SUCCESS';
+export const INVOICE_CREATE_FAILURE = 'INVOICE_CREATE_FAILURE';
+
+export const invoiceCreateRequest = () => ({
+  type: INVOICE_CREATE_REQUEST,
+});
+
+export const invoiceCreateReceive = invoice => ({
+  type: INVOICE_CREATE_SUCCESS,
+  payload: {
+    invoice,
+  },
+});
+
+export const invoiceCreateFailed = error => ({
+  type: INVOICE_CREATE_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+// export const invoiceCreateFetch = () => (dispatch) => {
+//   dispatch(invoiceCreateRequest());
+//   return fetch('http://localhost:9000/invoices')
+//     .then((response) => {
+//       dispatch(invoicesReceive(response.data));
+//     })
+//     .catch(error => dispatch(invoicesFailed(error)));
+// };
+
+export const INVOICE_REMOVE_REQUEST = 'INVOICE_REMOVE_REQUEST';
+export const INVOICE_REMOVE_SUCCESS = 'INVOICE_REMOVE_SUCCESS';
+export const INVOICE_REMOVE_FAILURE = 'INVOICE_REMOVE_FAILURE';
+
+export const invoiceRemoveRequest = () => ({
+  type: INVOICE_REMOVE_REQUEST,
+});
+
+export const invoiceRemoveReceive = () => ({
+  type: INVOICE_REMOVE_SUCCESS,
+});
+
+export const invoiceRemoveFailed = () => ({
+  type: INVOICE_REMOVE_FAILURE,
+});
+
+// export const invoiceRemoveFetch = () => (dispatch) => {
+//   dispatch(invoicesRequest());
+//   return fetch('http://localhost:9000/invoices')
+//     .then((response) => {
+//       dispatch(invoicesReceive(response.data));
+//     })
+//     .catch(error => dispatch(invoicesFailed(error)));
+// };
+
+export const INVOICE_EDIT_REQUEST = 'INVOICE_EDIT_REQUEST';
+export const INVOICE_EDIT_SUCCESS = 'INVOICE_EDIT_SUCCESS';
+export const INVOICE_EDIT_FAILURE = 'INVOICE_EDIT_FAILURE';
+
+export const invoiceEditRequest = () => ({
+  type: INVOICE_EDIT_REQUEST,
+});
+
+export const invoiceEditReceive = invoice => ({
+  type: INVOICE_EDIT_SUCCESS,
+  payload: {
+    invoice,
+  },
+});
+
+export const invoiceRemoveFailed = error => ({
+  type: INVOICE_EDIT_FAILURE,
+  payload: {
+    error,
+  },
+});
+
+export const invoiceRemoveFetch = () => (dispatch) => {
+  dispatch(invoiceEditRequest());
+  return fetch('http://localhost:9000/invoices', {
+      method: 'PUT',
+    })
+    .then((response) => {
+      dispatch(invoiceEditReceive(response.data));
+    })
+    .catch(error => dispatch(invoiceRemoveFailed(error)));
+};

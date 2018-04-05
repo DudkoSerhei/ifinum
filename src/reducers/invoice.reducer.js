@@ -2,11 +2,21 @@ import {
   INVOICES_REQUEST,
   INVOICES_SUCCESS,
   INVOICES_FAILURE,
+  INVOICE_CREATE_REQUEST,
+  INVOICE_CREATE_SUCCESS,
+  INVOICE_CREATE_FAILURE,
+  INVOICE_REMOVE_REQUEST,
+  INVOICE_REMOVE_SUCCESS,
+  INVOICE_REMOVE_FAILURE,
+  INVOICE_EDIT_REQUEST,
+  INVOICE_EDIT_SUCCESS,
+  INVOICE_EDIT_FAILURE,
 } from '../actions/invoice.action';
 
 const INITIAL_STATE = {
   isFetching: false,
   byId: {},
+  data: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -26,6 +36,54 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+      };
+    case INVOICE_CREATE_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case INVOICE_CREATE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case INVOICE_CREATE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload.error,
+      };
+    case INVOICE_REMOVE_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case INVOICE_REMOVE_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case INVOICE_REMOVE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+      };
+    case INVOICE_EDIT_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case INVOICE_EDIT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        data: action.payload.invoice,
+      };
+    case INVOICE_EDIT_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload.error,
       };
     default:
       return state;
