@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { parseRawInvoices } from '../services/invoice.service';
+import { parseRawInvoices, parseRawInvoice } from '../services/invoice.service';
 import { InvoicesSelectors } from '../selectors/invoice.selectors';
 
 export const INVOICES_REQUEST = 'INVOICES_REQUEST';
@@ -25,7 +25,7 @@ export const invoicesFailed = error => ({
 });
 
 export const invoicesFetch = () => (dispatch, getState) => {
-  if (InvoicesSelectors.all(getState())) {
+  if (!InvoicesSelectors.all(getState())) {
     return null;
   }
   dispatch(invoicesRequest());
@@ -66,7 +66,7 @@ export const invoiceCreateFetch = (invoice) => (dispatch) => {
   dispatch(invoiceCreateRequest());
   axios.post('http://localhost:9000/invoices', data)
     .then((response) => {
-      dispatch(invoiceCreateReceive(response.data));
+      dispatch(invoiceCreateReceive(parseRawInvoice(response.data)));
     })
     .catch(error => dispatch(invoiceCreateFailed(error)));
 };
@@ -129,7 +129,7 @@ export const invoiceEditFetch = (id, invoice) => (dispatch) => {
   dispatch(invoiceEditRequest());
   axios.put(`http://localhost:9000/invoices/${id}`, data)
     .then((response) => {
-      dispatch(invoiceEditReceive(response.data));
+      dispatch(invoiceEditReceive(parseRawInvoice(response.data)));
     })
     .catch(error => dispatch(invoiceEditFailed(error)));
 };
