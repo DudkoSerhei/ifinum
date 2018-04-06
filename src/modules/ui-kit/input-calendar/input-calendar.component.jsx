@@ -15,6 +15,7 @@ class InputCalendar extends Component {
           value={value || ''}
           inputProps={{
             onChange: this.onInputChange,
+            onKeyDown: this.onKeyPress,
           }}
           dayPickerProps={{
             disabledDays: { after: disableDateAfter, before: disableDateBefore },
@@ -44,6 +45,12 @@ class InputCalendar extends Component {
       this.props.onChange(e.target.value);
     }
   }
+
+  onKeyPress = (e) => {
+    if (e.key !== 'Tab') {
+      e.preventDefault();
+    }
+  };
 }
 
 InputCalendar.propTypes = {

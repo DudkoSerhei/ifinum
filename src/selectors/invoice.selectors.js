@@ -6,7 +6,7 @@ const byId = createSelector(invoices, state => state.byId);
 const all = createSelector(byId, state => Object.values(state));
 const numbers = createSelector(all, state => state.map(item => { return item.number }));
 
-const getById = id => createSelector(byId, state => state.find(item => item.id === id));
+const getById = id => createSelector(byId, state => state[id]);
 
 export const InvoicesSelectors = {
   fetchingStatus,

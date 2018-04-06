@@ -12,6 +12,7 @@ import {
   INVOICE_EDIT_SUCCESS,
   INVOICE_EDIT_FAILURE,
 } from '../actions/invoice.action';
+import { InvoiceUtils } from '../utils/invoice.utils';
 
 const INITIAL_STATE = {
   isFetching: false,
@@ -29,7 +30,7 @@ export default (state = INITIAL_STATE, action) => {
     case INVOICES_SUCCESS:
       return {
         ...state,
-        byId: action.payload.invoices,
+        byId: InvoiceUtils.fromArray('id', action.payload.invoices),
         isFetching: false,
       };
     case INVOICES_FAILURE:

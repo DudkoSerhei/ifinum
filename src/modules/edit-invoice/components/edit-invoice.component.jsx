@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../ui-kit/header/components/header.component';
+import Header from '../../ui-kit/header/header.component';
 import Button from '../../ui-kit/button/button.component';
 import InputCalendar from '../../ui-kit/input-calendar/input-calendar.component';
 import Input from '../../ui-kit/input/input.component';
@@ -109,15 +109,15 @@ class EditInvoice extends Component {
 
     const newData = {
       number: parseInt(number, 10),
-      date_created: createdDate,
-      date_supply: supplyDate,
+      createdDate,
+      supplyDate,
       comment,
     };
 
     if (this.validateForm()) {
       this.props.actions.invoiceEditFetch(this.props.invoice.id, newData);
       setTimeout(() => {
-        window.location.href = "http://localhost:3000";
+        this.props.history.push('/');
       }, 1000);
     }
   };
@@ -138,6 +138,7 @@ EditInvoice.propTypes = {
     supplyDate: PropTypes.string,
     comment: PropTypes.string,
   }),
+  history: PropTypes.object,
 };
 
 export default EditInvoice;

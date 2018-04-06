@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import Header from '../../ui-kit/header/components/header.component';
+import { InvoiceUtils } from '../../../utils/invoice.utils';
+import Header from '../../ui-kit/header/header.component';
 import Button from '../../ui-kit/button/button.component';
 import InputCalendar from '../../ui-kit/input-calendar/input-calendar.component';
 import Input from '../../ui-kit/input/input.component';
@@ -112,8 +113,8 @@ class CreateInvoice extends Component {
 
     const data = {
       number: parseInt(number, 10),
-      date_created: createdDate,
-      date_supply: supplyDate,
+      createdDate: InvoiceUtils.getFullDate(createdDate),
+      supplyDate: InvoiceUtils.getFullDate(supplyDate),
       comment,
     };
 

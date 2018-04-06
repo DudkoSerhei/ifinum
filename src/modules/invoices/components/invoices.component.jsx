@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
-import Header from '../../ui-kit/header/components/header.component';
+import { InvoiceUtils } from '../../../utils/invoice.utils';
+import Header from '../../ui-kit/header/header.component';
 import Button from '../../ui-kit/button/button.component';
 import './invoices.component.css';
 
@@ -37,10 +38,10 @@ class Invoices extends Component {
                 </tr>
                 {invoices && invoices.map((invoice, i) => (
                   <tr className="table-row" key={i}>
-                    <td className="table-text">{this.getDateISO(new Date(invoice.createdDate))}</td>
+                    <td className="table-text">{InvoiceUtils.getDateISO(new Date(invoice.createdDate))}</td>
                     <td className="table-num">{invoice.number}</td>
-                    <td className="table-text">{this.getDateISO(new Date(invoice.supplyDate))}</td>
-                    <td className="table-text">{this.onCutText(invoice.comment, 200)}</td>
+                    <td className="table-text">{InvoiceUtils.getDateISO(new Date(invoice.supplyDate))}</td>
+                    <td className="table-text">{InvoiceUtils.onCutText(invoice.comment, 200)}</td>
                     <td className="table-icons">
                       <div className="icon-delete" onClick={() => this.onRemoveInvoice(invoice.id)}>
                         <svg height="23.333" width="23.332" xmlns="http://www.w3.org/2000/svg">
@@ -62,21 +63,6 @@ class Invoices extends Component {
       </div>
     );
   }
-
-  getDateISO = (date) => {
-    if (Date.parse(date)) {
-      return date.toISOString().substring(0, 10);
-    }
-    return null;
-  };
-
-  onCutText = (text, symbols) => {
-    if (text.length > symbols) {
-      return `${text.substring(0, symbols)}...`;
-    }
-  
-    return text;
-  };
 
   onRemoveInvoice = (id) => {
     if (this.props.actions.invoiceRemoveFetch) {
