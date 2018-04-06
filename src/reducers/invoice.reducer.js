@@ -17,7 +17,6 @@ import { InvoiceUtils } from '../utils/invoice.utils';
 const INITIAL_STATE = {
   isFetching: false,
   byId: {},
-  data: {},
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -47,6 +46,10 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+        byId: {
+          ...state.byId,
+          [action.payload.invoice.id]: action.payload.invoice,
+        },
       };
     case INVOICE_CREATE_FAILURE:
       return {
@@ -60,9 +63,16 @@ export default (state = INITIAL_STATE, action) => {
         isFetching: true,
       };
     case INVOICE_REMOVE_SUCCESS:
+      const newState = { ...state.byId };
+
+      delete newState[action.payload.id];
+
       return {
         ...state,
         isFetching: false,
+        byId: {
+          ...newState,
+        }
       };
     case INVOICE_REMOVE_FAILURE:
       return {
@@ -78,7 +88,10 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        data: action.payload.invoice,
+        byId: {
+          ...state.byId,
+          [action.payload.invoice.id]: action.payload.invoice,
+        },
       };
     case INVOICE_EDIT_FAILURE:
       return {

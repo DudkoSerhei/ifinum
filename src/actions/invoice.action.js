@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { parseRawInvoices, parseRawInvoice } from '../services/invoice.service';
-import { InvoicesSelectors } from '../selectors/invoice.selectors';
 
 export const INVOICES_REQUEST = 'INVOICES_REQUEST';
 export const INVOICES_SUCCESS = 'INVOICES_SUCCESS';
@@ -25,9 +24,6 @@ export const invoicesFailed = error => ({
 });
 
 export const invoicesFetch = () => (dispatch, getState) => {
-  if (!InvoicesSelectors.all(getState())) {
-    return null;
-  }
   dispatch(invoicesRequest());
   axios.get('http://localhost:9000/invoices')
     .then((response) => {
@@ -44,8 +40,11 @@ export const invoiceCreateRequest = () => ({
   type: INVOICE_CREATE_REQUEST,
 });
 
-export const invoiceCreateReceive = () => ({
+export const invoiceCreateReceive = (invoice) => ({
   type: INVOICE_CREATE_SUCCESS,
+  payload: {
+    invoice,
+  },
 });
 
 export const invoiceCreateFailed = error => ({
@@ -79,8 +78,11 @@ export const invoiceRemoveRequest = () => ({
   type: INVOICE_REMOVE_REQUEST,
 });
 
-export const invoiceRemoveReceive = () => ({
+export const invoiceRemoveSuccess = (id) => ({
   type: INVOICE_REMOVE_SUCCESS,
+  payload: {
+    id,
+  },
 });
 
 export const invoiceRemoveFailed = () => ({
@@ -90,8 +92,8 @@ export const invoiceRemoveFailed = () => ({
 export const invoiceRemoveFetch = (id) => (dispatch) => {
   dispatch(invoiceRemoveRequest());
   axios.delete(`http://localhost:9000/invoices/${id}`)
-    .then((response) => {
-      dispatch(invoiceRemoveReceive(response.data));
+    .then(() => {
+      dispatch(invoiceRemoveSuccess(id));
     })
     .catch(error => dispatch(invoiceRemoveFailed(error)));
 };

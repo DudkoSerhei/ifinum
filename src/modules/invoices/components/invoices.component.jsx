@@ -68,9 +68,6 @@ class Invoices extends Component {
     if (this.props.actions.invoiceRemoveFetch) {
       this.props.actions.invoiceRemoveFetch(id);
     }
-    setTimeout(() => {
-      window.location.reload();
-    }, 250);
   };
 
   onEditInvoice = (id) => {
